@@ -1,3 +1,4 @@
+"use client";
 // src/context/UserContext.jsx
 import React, { createContext, useContext, useState, useEffect } from "react";
 

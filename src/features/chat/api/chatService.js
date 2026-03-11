@@ -4,10 +4,10 @@
  *
  * IMPORTANT (Vite):
  * - Do NOT use `process.env` in browser code.
- * - Use `import.meta.env` and prefix variables with `VITE_`.
+ * - Use `process.env` and prefix variables with `NEXT_PUBLIC_`.
  */
 
-const API_BASE_URL = import.meta.env.VITE_API_URL ?? "http://localhost:3000";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3000";
 
 /**
  * Helper function to standardize fetch error handling

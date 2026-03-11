@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useState } from "react";
 import { motion as Motion } from "framer-motion";
 

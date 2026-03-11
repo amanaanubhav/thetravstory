@@ -4,7 +4,7 @@
  * Communicates with Express backend which proxies to Python ML API
  */
 
-const API_BASE_URL = import.meta.env.VITE_API_URL ?? "http://localhost:3000";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3000";
 
 /**
  * Analyze personality quiz answers

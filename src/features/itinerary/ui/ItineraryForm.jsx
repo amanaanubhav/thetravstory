@@ -1,8 +1,9 @@
+"use client";
 // src/components/ItineraryForm.jsx
 import React, { useState, useEffect, useRef } from "react";
 import { useTrip } from "../../../app/providers/TripProvider";
 import { useUser } from "../../../app/providers/UserProvider";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   MapPin, Calendar, DollarSign, Users, Sparkles, ArrowRight,
@@ -508,7 +509,7 @@ function StepBudget({ budget, setBudget, groupSize, config }) {
 // ─── Main Component ───────────────────────────────────────────────────────────
 
 export default function ItineraryForm({ isOpen, onClose }) {
-  const navigate = useNavigate();
+  const router = useRouter();
   const { createTrip } = useTrip();
   const { user } = useUser();
 
@@ -583,7 +584,7 @@ export default function ItineraryForm({ isOpen, onClose }) {
       });
 
       clearInterval(interval);
-      navigate(`/planner/${newTrip.id}`);
+      router.push(`/planner/${newTrip.id}`);
       onClose();
       setStep(0);
       setDestinations([]);

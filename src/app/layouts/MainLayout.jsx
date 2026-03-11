@@ -1,20 +1,22 @@
+"use client";
 // src/layouts/MainLayout.jsx
-import { Outlet, useLocation, NavLink, useNavigate } from "react-router-dom";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { useUser } from "../providers/UserProvider";
 
-const MainLayout = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
+const MainLayout = ({ children }) => {
+  const pathname = usePathname();
+  const router = useRouter();
   const { user, logout } = useUser();
 
   const isFullWidthPage =
-    location.pathname === "/chat" ||
-    location.pathname.startsWith("/planner") ||
-    location.pathname === "/profile";
+    pathname === "/chat" ||
+    pathname.startsWith("/planner") ||
+    pathname === "/profile";
 
   const handleLogout = () => {
     logout();
-    navigate("/auth");
+    router.push("/auth");
   };
 
   return (
@@ -37,22 +39,23 @@ const MainLayout = () => {
                 { to: "/chat", label: "Chat" },
                 { to: "/planner", label: "Planner" },
                 { to: "/profile", label: "Profile" },
-              ].map((item) => (
-                <li key={item.to}>
-                  <NavLink
-                    to={item.to}
-                    className={({ isActive }) =>
-                      `pb-1 transition ${
+              ].map((item) => {
+                const isActive = pathname === item.to || pathname.startsWith(item.to + "/");
+                return (
+                  <li key={item.to}>
+                    <Link
+                      href={item.to}
+                      className={`pb-1 transition ${
                         isActive
                           ? "text-sky-600 border-b-2 border-sky-600"
                           : "text-slate-600 hover:text-sky-700"
-                      }`
-                    }
-                  >
-                    {item.label}
-                  </NavLink>
-                </li>
-              ))}
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </nav>
 
@@ -94,7 +97,7 @@ const MainLayout = () => {
             : "flex-1 container mx-auto max-w-5xl px-6 pt-6 overflow-y-auto"
         }
       >
-        <Outlet />
+        {children}
       </main>
     </div>
   );

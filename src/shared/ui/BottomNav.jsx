@@ -1,6 +1,7 @@
+"use client";
 // src/components/common/BottomNav.jsx
 import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { usePathname, useRouter } from "next/navigation";
 import {
   Home as HomeIcon,
   Compass,
@@ -19,8 +20,8 @@ const tabs = [
 ];
 
 const BottomNav = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
+  const pathname = usePathname();
+  const router = useRouter();
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-30 pb-6">
@@ -33,12 +34,12 @@ const BottomNav = () => {
           {tabs.map((tab) => {
             const Icon = tab.icon;
             const base = tab.path.split("/:")[0];
-            const active = location.pathname.startsWith(base);
+            const active = pathname.startsWith(base);
 
             return (
               <button
                 key={tab.key}
-                onClick={() => navigate(tab.path)}
+                onClick={() => router.push(tab.path)}
                 className="flex flex-col items-center gap-1 text-[10px] font-medium"
               >
                 <div

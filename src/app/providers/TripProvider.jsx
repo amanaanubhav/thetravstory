@@ -1,3 +1,4 @@
+"use client";
 // src/context/TripContext.jsx
 import React, { createContext, useContext, useState } from "react";
 

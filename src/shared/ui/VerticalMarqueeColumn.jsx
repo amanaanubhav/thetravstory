@@ -1,3 +1,4 @@
+"use client";
 import { useLayoutEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
