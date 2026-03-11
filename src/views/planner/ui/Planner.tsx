@@ -18,7 +18,7 @@ import { useTrip } from "../../../app/providers/TripProvider";
 import { useUser } from "../../../app/providers/UserProvider";
 
 // ─── Fix Leaflet icons ────────────────────────────────────────────────────────
-delete L.Icon.Default.prototype._getIconUrl;
+delete (L.Icon.Default.prototype as any)._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
   iconUrl:       "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
@@ -146,7 +146,7 @@ function EmptyState({ navigate }) {
         </div>
         <h1 className="text-3xl font-black text-slate-800 mb-2">No trip yet</h1>
         <p className="text-slate-500 mb-7 leading-relaxed">Generate your first itinerary and it'll appear here, fully personalized.</p>
-        <button onClick={() => router.push("/home")}
+        <button onClick={() => navigate("/home")}
           className="inline-flex items-center gap-2 px-7 py-3 bg-gradient-to-r from-sky-500 to-indigo-600 text-white rounded-2xl font-bold shadow-xl">
           <Sparkles size={17} /> Plan Your Trip
         </button>

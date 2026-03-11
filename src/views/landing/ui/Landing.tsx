@@ -171,6 +171,7 @@ const experiences = [
 ];
 
 const ExperienceCarousel = () => {
+  const router = useRouter();
   const containerRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
 

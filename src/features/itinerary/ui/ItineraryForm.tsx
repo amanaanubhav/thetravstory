@@ -45,7 +45,7 @@ async function fetchCityInfo(city) {
 async function generateSmartItinerary({ destinations, startDate, endDate, budget, pace, groupSize, personality }) {
   const start = new Date(startDate);
   const end = new Date(endDate);
-  const totalDays = Math.max(1, Math.round((end - start) / (1000 * 60 * 60 * 24)));
+  const totalDays = Math.max(1, Math.round((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24)));
 
   const activitiesPerDay = pace === "relaxed" ? 2 : pace === "intense" ? 4 : 3;
 
@@ -270,7 +270,7 @@ function DestCard({ city, selected, onClick, config }) {
       className={`relative rounded-2xl overflow-hidden h-28 text-left group transition-all ${
         selected ? "ring-3 ring-offset-2" : "ring-0"
       }`}
-      style={selected ? { ringColor: config.color } : {}}
+      style={selected ? { ringColor: config.color } as any : {}}
     >
       <img src={img} alt={city} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
       <div className={`absolute inset-0 transition-opacity ${selected ? "opacity-60" : "opacity-40"} bg-gradient-to-t from-black to-transparent`} />
@@ -326,7 +326,7 @@ function StepWhere({ destinations, setDestinations, customDest, setCustomDest, c
           }}
           placeholder="Type a city and press Enter…"
           className="w-full pl-10 pr-4 py-3 rounded-2xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:border-transparent transition-all"
-          style={{ focusRingColor: config.color }}
+          style={{ focusRingColor: config.color } as any}
         />
       </div>
       {destinations.length > 0 && (
@@ -351,7 +351,7 @@ function StepWhere({ destinations, setDestinations, customDest, setCustomDest, c
 
 function StepWhen({ startDate, setStartDate, endDate, setEndDate, config }) {
   const days = startDate && endDate
-    ? Math.max(0, Math.round((new Date(endDate) - new Date(startDate)) / (1000 * 60 * 60 * 24)))
+    ? Math.max(0, Math.round((new Date(endDate).getTime() - new Date(startDate).getTime()) / (1000 * 60 * 60 * 24)))
     : 0;
 
   return (

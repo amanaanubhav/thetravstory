@@ -115,7 +115,7 @@ const RecommendationPanel = ({ tripDetails }) => {
       <Card className="p-4">
         <p className="text-xs text-slate-500 font-semibold mb-3">BUDGET BREAKDOWN</p>
         <div className="space-y-2">
-          {Object.entries(budget_breakdown).map(([category, amount]) => (
+          {Object.entries(budget_breakdown as Record<string, number>).map(([category, amount]) => (
             <div key={category} className="flex justify-between items-center">
               <p className="text-sm text-slate-600 capitalize">{category}</p>
               <p className="text-sm font-semibold text-slate-900">${amount}</p>
@@ -124,7 +124,7 @@ const RecommendationPanel = ({ tripDetails }) => {
           <div className="border-t border-slate-200 pt-2 mt-2 flex justify-between items-center">
             <p className="text-sm font-semibold text-slate-900">Total</p>
             <p className="text-sm font-bold text-sky-600">
-              ${Object.values(budget_breakdown).reduce((a, b) => a + b, 0)}
+              ${(Object.values(budget_breakdown as Record<string, number>)).reduce((a, b) => a + b, 0)}
             </p>
           </div>
         </div>
@@ -135,7 +135,7 @@ const RecommendationPanel = ({ tripDetails }) => {
         <Card className="p-4 bg-slate-50">
           <p className="text-xs text-slate-500 font-semibold mb-3">YOUR TRAVEL PERSONALITY</p>
           <div className="space-y-3">
-            {Object.entries(personality_scores).map(([score, value]) => (
+            {Object.entries(personality_scores as Record<string, number>).map(([score, value]) => (
               <div key={score}>
                 <div className="flex justify-between items-center mb-1">
                   <p className="text-xs text-slate-600 capitalize">

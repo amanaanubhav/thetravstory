@@ -1,0 +1,28 @@
+﻿src/features/itinerary/index.ts(3,10): error TS2305: Module '"./api/itineraryService"' has no exported member 'default'.
+src/features/itinerary/ui/ItineraryForm.tsx(48,45): error TS2362: The left-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
+src/features/itinerary/ui/ItineraryForm.tsx(48,51): error TS2363: The right-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
+src/features/itinerary/ui/ItineraryForm.tsx(273,27): error TS2322: Type '{ ringColor: any; } | {}' is not assignable to type 'MotionStyle'.
+  Object literal may only specify known properties, and 'ringColor' does not exist in type 'MotionStyle'.
+src/features/itinerary/ui/ItineraryForm.tsx(329,20): error TS2353: Object literal may only specify known properties, and 'focusRingColor' does not exist in type 'Properties<string | number, string & {}>'.
+src/features/itinerary/ui/ItineraryForm.tsx(354,31): error TS2362: The left-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
+src/features/itinerary/ui/ItineraryForm.tsx(354,51): error TS2363: The right-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
+src/features/itinerary/ui/RecommendationPanel.tsx(121,68): error TS2322: Type 'unknown' is not assignable to type 'ReactNode'.
+src/features/itinerary/ui/RecommendationPanel.tsx(127,16): error TS2322: Type 'unknown' is not assignable to type 'ReactNode'.
+src/features/itinerary/ui/RecommendationPanel.tsx(127,66): error TS2365: Operator '+' cannot be applied to types 'unknown' and 'unknown'.
+src/features/itinerary/ui/RecommendationPanel.tsx(145,33): error TS2362: The left-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
+src/features/itinerary/ui/RecommendationPanel.tsx(151,40): error TS2362: The left-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
+src/shared/ui/index.ts(6,35): error TS2306: File 'D:/CODE/thetravstory/src/shared/ui/slider.tsx' is not a module.
+src/shared/ui/slider.tsx(2,24): error TS2304: Cannot find name 'useRef'.
+src/shared/ui/slider.tsx(3,29): error TS2304: Cannot find name 'useState'.
+src/shared/ui/slider.tsx(5,3): error TS2304: Cannot find name 'useEffect'.
+src/shared/ui/slider.tsx(7,39): error TS2304: Cannot find name 'items'.
+src/shared/ui/slider.tsx(13,3): error TS2304: Cannot find name 'useEffect'.
+src/shared/ui/slider.tsx(26,8): error TS2304: Cannot find name 'items'.
+src/views/explore/ui/Explore.tsx(236,21): error TS2322: Type '(el: HTMLDivElement) => HTMLDivElement' is not assignable to type 'Ref<HTMLDivElement>'.
+  Type '(el: HTMLDivElement) => HTMLDivElement' is not assignable to type '(instance: HTMLDivElement) => void | (() => VoidOrUndefinedOnly)'.
+    Type 'HTMLDivElement' is not assignable to type 'void | (() => VoidOrUndefinedOnly)'.
+src/views/explore/ui/Explore.tsx(291,16): error TS2741: Property 'onClick' is missing in type '{ icon: Element; label: string; }' but required in type '{ icon: any; label: any; onClick: any; }'.
+src/views/explore/ui/Explore.tsx(300,16): error TS2739: Type '{ icon: Element; }' is missing the following properties from type '{ icon: any; label: any; onClick: any; }': label, onClick
+src/views/landing/ui/Landing.tsx(242,28): error TS2304: Cannot find name 'router'.
+src/views/planner/ui/Planner.tsx(21,33): error TS2339: Property '_getIconUrl' does not exist on type 'Default'.
+src/views/planner/ui/Planner.tsx(149,32): error TS2304: Cannot find name 'router'.

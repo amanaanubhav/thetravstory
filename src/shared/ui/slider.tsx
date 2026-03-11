@@ -1,4 +1,8 @@
-function SingleCardSlider() {
+import React, { useRef, useState, useEffect } from 'react';
+
+const items: any[] = [];
+
+export default function SingleCardSlider() {
   const containerRef = useRef(null);
   const [index, setIndex] = useState(0);
 

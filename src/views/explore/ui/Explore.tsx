@@ -95,7 +95,7 @@ function ExploreFilters({ selectedLocation, setSelectedLocation, selectedType, s
 /* ------------------------------------------------------------------ */
 /* RIGHT ACTION BUTTON (from new UI) */
 /* ------------------------------------------------------------------ */
-function Action({ icon, label, onClick }) {
+function Action({ icon, label, onClick }: { icon: React.ReactNode; label?: string; onClick?: () => void }) {
   return (
     <div
       className="flex items-center gap-3 text-gray-600 hover:text-gray-900 cursor-pointer transition"
@@ -233,7 +233,7 @@ export default function Explore() {
                 {filtered.map((reel, index) => (
                   <motion.div
                     key={reel.id}
-                    ref={(el) => (reelRefs.current[index] = el)}
+                    ref={(el) => { reelRefs.current[index] = el; }}
                     className="
                       snap-start
                       snap-always
