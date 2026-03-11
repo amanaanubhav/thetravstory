@@ -1,0 +1,15 @@
+# ─── .dockerignore ─────────────────────────────────────────
+node_modules
+dist
+.git
+.github
+.env
+.env.local
+*.md
+__pycache__
+*.pyc
+ml-core/__pycache__
+ml-core/src/__pycache__
+libs/
+docs/
+notebooks/

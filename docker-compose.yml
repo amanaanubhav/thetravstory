@@ -1,0 +1,77 @@
+# TheTravStory — Full-Stack Docker Compose
+# Usage: docker-compose up --build
+# Frontend: http://localhost:5173  (dev) / served via Vercel in prod
+# Backend:  http://localhost:3000
+# ML API:   http://localhost:8000
+# MongoDB:  localhost:27017
+
+version: '3.9'
+
+services:
+  # ─── MongoDB Database ────────────────────────────────────
+  mongodb:
+    image: mongo:7
+    container_name: thetravstory-db
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    environment:
+      MONGO_INITDB_DATABASE: thetravstory
+    networks:
+      - thetravstory-net
+
+  # ─── Express.js Backend ──────────────────────────────────
+  backend:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    container_name: thetravstory-backend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
+    environment:
+      PORT: 3000
+      MONGODB_URI: mongodb://mongodb:27017/thetravstory
+      ML_API_URL: http://ml-core:8000
+      JWT_SECRET: ${JWT_SECRET:-dev_secret_change_in_production}
+    networks:
+      - thetravstory-net
+
+  # ─── FastAPI ML Core ─────────────────────────────────────
+  ml-core:
+    build:
+      context: .
+      dockerfile: ml-core/Dockerfile
+    container_name: thetravstory-ml
+    ports:
+      - "8000:8000"
+    environment:
+      PYTHONUNBUFFERED: 1
+    networks:
+      - thetravstory-net
+
+  # ─── Vite Frontend (dev only) ───────────────────────────
+  frontend:
+    image: node:18-alpine
+    container_name: thetravstory-frontend
+    working_dir: /app
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - "5173:5173"
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
+    depends_on:
+      - backend
+      - ml-core
+    networks:
+      - thetravstory-net
+
+volumes:
+  mongo-data:
+
+networks:
+  thetravstory-net:
+    driver: bridge

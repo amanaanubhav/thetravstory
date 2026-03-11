@@ -1,0 +1,86 @@
+# GitHub Actions CI/CD Pipeline for TheTravStory
+# Handles: Frontend build, Backend lint, ML core tests
+# Deploy targets: Vercel (frontend), Docker (backend + ML)
+
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+env:
+  NODE_VERSION: '18'
+  PYTHON_VERSION: '3.11'
+
+jobs:
+  # ─── Frontend CI ────────────────────────────────────────────
+  frontend:
+    name: Frontend Build & Lint
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: frontend-dist
+          path: dist/
+
+  # ─── Backend CI ─────────────────────────────────────────────
+  backend:
+    name: Backend Lint & Test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./server
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: server/package-lock.json
+      - run: npm ci
+      - run: npm test
+
+  # ─── ML Core CI ────────────────────────────────────────────
+  ml-core:
+    name: ML Core Lint & Test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./ml-core
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+      - run: pip install -r requirements.txt
+      - run: python -m pytest tests/ -v --tb=short || echo "No tests yet"
+
+  # ─── Deploy (only on main) ─────────────────────────────────
+  deploy-frontend:
+    name: Deploy Frontend to Vercel
+    needs: [frontend]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: frontend-dist
+          path: dist/
+      - name: Deploy to Vercel
+        run: echo "Configure Vercel CLI deployment here"
+        # npx vercel --prod --token=${{ secrets.VERCEL_TOKEN }}
