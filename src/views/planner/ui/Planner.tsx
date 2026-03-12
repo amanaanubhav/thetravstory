@@ -211,6 +211,23 @@ export default function Planner() {
   // Weather
   const [weather, setWeather] = useState(null);
 
+  async function loadExplore(city) {
+    if (!city?.trim()) return;
+    setExploreLoading(true);
+    const results = await fetchPlacesForCity(city.trim());
+    setExploreData(results);
+    setExploreLoading(false);
+  }
+
+  async function loadWeather(city) {
+    try {
+      const res = await fetch(`https://wttr.in/${encodeURIComponent(city)}?format=j1`);
+      const data = await res.json();
+      const w = data.current_condition?.[0];
+      if (w) setWeather({ temp: w.temp_C, desc: w.weatherDesc?.[0]?.value || "" });
+    } catch { /* silent */ }
+  }
+
   useEffect(() => {
     if (trip?.locations?.[0]) {
       const city = trip.locations[0];
@@ -220,23 +237,6 @@ export default function Planner() {
       loadWeather(city);
     }
   }, [trip?.id]);
-
-  const loadExplore = async (city) => {
-    if (!city?.trim()) return;
-    setExploreLoading(true);
-    const results = await fetchPlacesForCity(city.trim());
-    setExploreData(results);
-    setExploreLoading(false);
-  };
-
-  const loadWeather = async (city) => {
-    try {
-      const res = await fetch(`https://wttr.in/${encodeURIComponent(city)}?format=j1`);
-      const data = await res.json();
-      const w = data.current_condition?.[0];
-      if (w) setWeather({ temp: w.temp_C, desc: w.weatherDesc?.[0]?.value || "" });
-    } catch { /* silent */ }
-  };
 
   const handleSearch = useCallback(() => {
     const city = searchInput.trim();

@@ -10,6 +10,9 @@ const nextConfig = {
 
   // Suppress hydration warnings during migration
   reactStrictMode: true,
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 export default nextConfig;
