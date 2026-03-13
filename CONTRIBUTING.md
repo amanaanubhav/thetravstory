@@ -1,10 +1,10 @@
 # Contributing to TheTravStory
 
-Welcome to the team! To maintain a scalable and conflict-free project, we follow a strict branching and contribution model.
+To maintain a scalable and conflict-free project, we follow a strict branching and contribution model.
 
 ## Branching Strategy
 
-We use a modular GitFlow approach:
+Implemented use of a modular GitFlow approach:
 
 ### Core Branches
 - **`main`**: Production-ready code. No direct commits.
