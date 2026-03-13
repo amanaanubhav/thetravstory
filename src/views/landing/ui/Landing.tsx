@@ -305,6 +305,7 @@ const [isTransitioning, setIsTransitioning] = useState(false);
   {/* Updated button with better positioning and hover */}
   <button
     onClick={handleGoToAuth}
+    suppressHydrationWarning={true}
     className="
       relative
       px-5 py-2.5
@@ -367,6 +368,7 @@ const [isTransitioning, setIsTransitioning] = useState(false);
             >
               <button
               onClick={handleGoToAuth}
+              suppressHydrationWarning={true}
 
                 className="group relative px-9 py-5 bg-slate-900 text-white rounded-full font-bold text-sm md:text-lg overflow-hidden transition-transform hover:scale-105 active:scale-95 shadow-xl shadow-slate-900/20"
               >
@@ -378,6 +380,7 @@ const [isTransitioning, setIsTransitioning] = useState(false);
 
               <button
                 onClick={() => router.push("/quiz")}
+                suppressHydrationWarning={true}
                 className="group px-8 py-4 bg-white text-slate-900 font-bold text-sm md:text-lg flex items-center gap-2 hover:bg-slate-100 border border-slate-200 shadow-sm rounded-full"
               >
                 <Sparkles className="w-7 h-7 text-sky-500" />
@@ -487,6 +490,7 @@ const [isTransitioning, setIsTransitioning] = useState(false);
       });
     }
   }}
+  suppressHydrationWarning={true}
   className="
     absolute bottom-6 left-1/2 -translate-x-1/2
     w-14 h-14 rounded-full
@@ -561,6 +565,7 @@ const [isTransitioning, setIsTransitioning] = useState(false);
             <button
             type="button"
               onClick={handleGoToAuth}
+              suppressHydrationWarning={true}
               className="group relative px-9 py-4.5 bg-slate-900 text-white rounded-full font-bold text-xl md:text-lg overflow-hidden transition-transform hover:scale-115 active:scale-95 shadow-lg shadow-slate-900/20 whitespace-nowrap"
             >
               <span className="relative z-10 flex items-center gap-2">
@@ -594,10 +599,12 @@ const [isTransitioning, setIsTransitioning] = useState(false);
                   <input
                     type="email"
                     placeholder="you@travelszn.com"
+                    suppressHydrationWarning={true}
                     className="flex-1 rounded-full bg-slate-800 border border-slate-600 px-4 py-2.5 text-sm md:text-base text-slate-100 placeholder:text-slate-500 outline-none focus:ring-2 focus:ring-sky-400 focus:border-sky-300"
                   />
                   <button
                     type="submit"
+                    suppressHydrationWarning={true}
                     className="px-6 py-2.5 rounded-full bg-sky-500 hover:bg-sky-400 text-sm md:text-base font-semibold text-white shadow-lg shadow-sky-500/30 transition-colors"
                   >
                     Count me in
@@ -634,9 +641,24 @@ const [isTransitioning, setIsTransitioning] = useState(false);
             <div className="mt-6 pt-3 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-slate-500">
               <p>© {new Date().getFullYear()} Trap. All rights reserved.</p>
               <div className="flex gap-4">
-                <button className="hover:text-slate-300">Privacy</button>
-                <button className="hover:text-slate-300">Terms</button>
-                <button className="hover:text-slate-300">Cookies</button>
+                <button 
+                  suppressHydrationWarning={true}
+                  className="hover:text-slate-300"
+                >
+                  Privacy
+                </button>
+                <button 
+                  suppressHydrationWarning={true}
+                  className="hover:text-slate-300"
+                >
+                  Terms
+                </button>
+                <button 
+                  suppressHydrationWarning={true}
+                  className="hover:text-slate-300"
+                >
+                  Cookies
+                </button>
               </div>
             </div>
           </div>
