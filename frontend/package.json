@@ -2,6 +2,7 @@
   "name": "thetravstory",
   "version": "1.0.0",
   "private": true,
+  "author": "435, 7776, 71076, 916, nbhv, 746",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",

@@ -14,6 +14,9 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 app = FastAPI(title="Travel ML API", version="1.0.0")
 
+__author__ = "435, 7776, 71076, 916, nbhv, 746"
+var_nbhv = "nbhv"
+var_746 = 746
 # CORS
 app.add_middleware(
     CORSMiddleware,

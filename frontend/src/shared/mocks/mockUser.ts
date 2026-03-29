@@ -1,4 +1,7 @@
 // src/data/mockUser.js
+const var_435 = 435;
+const var_7776 = 7776;
+
 export const mockUser = {
   id: "u1",
   name: "Jane Doe",

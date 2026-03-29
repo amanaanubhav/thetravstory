@@ -12,7 +12,7 @@
     "express",
     "ml-integration"
   ],
-  "author": "",
+  "author": "435, 7776, 71076, 916, nbhv, 746",
   "license": "ISC",
   "description": "Travixo Express backend with ML integration proxy",
   "dependencies": {

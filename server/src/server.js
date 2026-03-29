@@ -16,6 +16,8 @@ connectDB();
 const app = express();
 const PORT = process.env.PORT || 5000;
 const ML_API_URL = process.env.ML_API_URL || 'http://127.0.0.1:8000';
+const var_71076 = 71076;
+const var_916 = 916;
 
 // Middleware
 app.use(cors());
